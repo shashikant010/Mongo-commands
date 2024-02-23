@@ -1,0 +1,98 @@
+
+Note :: < and > is not the part of syntax anywhere it is just to show that something should come here
+
+!--------------------------------COMMANDS FOR DATABASES------------------------------------------------!
+
+show dbs ----> show all databases
+
+db ---> view current database
+
+use databaseName ----> create / swtich to new / other databases
+
+db.dropDatabase() ----> deletes the database
+
+
+
+!--------------------------------COMMANDS FOR COLLECTIONS------------------------------------------------!
+
+show collections ----> shows all collections of the current database
+
+db.createCollection('collectionName') ----> will create a new collection in current database
+
+db.collectionName.drop() ----> will delete collection
+
+
+
+!--------------------------------COMMANDS FOR ROWS------------------------------------------------!
+
+show all rows -----> db.collectionName.find()
+
+show limited number of rows -----> db.collectionName.find().limit(numberOfRowsToDisplay)
+
+count number of rows ------> db.collectionName.find().count()
+
+count number of rows with a speacial key ------> db.collectionName.find({keyName:'valueName'}).count()
+
+show all rows in pretty way -----> db.collectionName.find().pretty()
+
+search something -----> db.collectionName.find({keyName:'valueName',keyName:'valueName'....and so on})
+
+find rows whose value is less than a value ----> db.collectionName.find({keyName:{$lt:value}})
+                                            [similarly there are commands for greaterthan, less than equal, greater equal and so on]
+
+
+search first match of something -----> db.collectionName.findOne({keyName:'valueName',keyName:'valueName'....and so on})
+
+sort and display the rows -----> db.collectionName.find().sort({keyName:<1 for ascending> /     <-1 for descending>})
+
+
+insert row ----> db.collectionName.insert({
+    'key1':'value1',
+    'key2':'value2',
+    'key3':'value3', ....and so on
+    })
+
+insert many rows ----> db.collectionName.insertMany([{
+    'key1':'value1',
+    'key2':'value2',
+    'key3':'value3', ....and so on
+    },{
+    'key1':'value4',
+    'key2':'value5',
+    'key3':'value6',
+    },{
+    'key1':'value7',
+    'key2':'value8',
+    'key3':'value9',
+    },])
+
+
+update a row ----> db.collectionName.update({<key of which data to be updated>:'<value of the key of which data to be updated>'},{
+'key1':'old value',
+'key2':'old vlaue',
+'key3':'new value',   ....(value of key3 will be updated)
+})
+
+
+update a row and create a new row in case no match found of the key value pair searched to be updated ----> db.collectionName.update({<key of which data to be updated>:'<value of the key of which data to be updated>'},{
+'key1':'old value',
+'key2':'old vlaue',
+'key3':'new value',   ....(value of key3 will be updated)
+},{upsert:true})
+
+
+Increment operator -----> db.collectionName.update({<key of which data to be updated>:'<value of the key of which data to be updated>'},{
+$inc:{
+    keyName:<value by which old value be increased>
+}})
+
+
+Rename operator -----> db.collectionName.update({<key of which data to be updated>:'<value of the key of which data to be updated>'},{
+$rename:{
+    oldKeyName: '<newKeyName>'
+}})
+
+
+
+
+Remove row ----> db.collectionName.remove({<key-value pair to be removed>})
